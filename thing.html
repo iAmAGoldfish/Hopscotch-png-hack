@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image to Hopscotch blocks thing</title>
+<link rel="stylesheet" href="style.css"></link>
+</head>
+<body>
+<p>Add image to make into Hopscotch stuff</p>
+<input id="imageInput" type="file" accept="image/png, image/jpeg"></input>
+<br />
+<p id="noImage">There's no image!</p>
+<p>Pixel size:
+<input id="pixelSizeInput" value="1" class="smallInput"></input></p>
+<p> Location of bottom left corner: X: <input id="offsetXInput" value="0" class="smallInput"></input> Y: <input id="offsetYInput" value="0" class="smallInput"></input></p>
+
+<button id="createHopscotchButton">Create Hopscotch code</button>
+<br />
+<div id="loading" class="noDisplay"><img src="loading.gif" width="200px" alt="LoadingGif"></div>
+<br />
+<br />
+<textarea id="output"></textarea>
+<br />
+<div style="display: none;"><p>Add Hopscotch project for automatic addition of blocks</p>
+<p class="small">Will add new object as drawer</p>
+<input type="file" accept=".hopscotch" id="hopscotchProjectInput"></input>
+<br />
+<a href="" id="hopscotchSaveButton" class="noDisplay">Save new Hopscotch project</a></div>
+<script src="blockMaker.js"></script>
+<script src="image to hopscotch.js"></script>
+</body>
+</html>

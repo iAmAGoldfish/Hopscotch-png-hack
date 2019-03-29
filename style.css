@@ -1,0 +1,31 @@
+body {
+font-family: sans-serif;
+background-color: #232425;
+color: #eee;
+font-size: 24pt;
+}
+.smallInput {
+width: 20px;
+}
+#noImage {
+font-size: 12px;
+background-color: #fff;
+color: #222;
+width: 100px;
+display: none;
+}
+
+#output {
+width: 90%;
+height: 300px;
+display: none;
+}
+
+.noDisplay {
+display: none;
+}
+
+.small {
+font-size: 12pt;
+color: #eeeeed;
+}
