@@ -1,6 +1,14 @@
 function createHopscotchMethodBlock(description, type, parameters) {
   return {"block_class":"method","description":description,"type":type,"parameters":parameters};
 }
+function createHopscotchConditionalControlBlock(description, type, controlScripts, parameters) {
+	const block = {"block_class":"conditionalControl","description":description,"type":type,"parameters":parameters, "controlScript": {"abilityID":controlScripts.true}};
+	if (controlScripts.hasOwnProperty('false')) {
+		block.controlFalseScript = {"abilityID":controlScripts.false};
+	}
+	return block
+
+}
 //parameters
 function createHopscotchParameter(defaultValue, value, key, type) {
   return {"defaultValue":defaultValue,"value":value,"key":key,"type":type};
@@ -38,6 +46,7 @@ function setTextHopscotchParameter(key, value) {
 
 //blocks
 
+//method
 function setTrailColor(color) {
   return createHopscotchMethodBlock('Set trail color',32,[lineColorHopscotchParameter('',color)]);
 }
@@ -55,4 +64,12 @@ function setPosition(x, y) {
 }
 function moveWithTrail(amount) {
   return createHopscotchMethodBlock('Move With Trail',46,[defaultHopscotchParameter('amount',amount)]);
+}
+function createAClone(amount) {
+	return createHopscotchMethodBlock('Create a clone',53,[defaultHopscotchParameter('amount',amount)]);
+}
+
+//control or conditional control
+function checkIfElse(condition, controlScript, controlFalseScript) {
+	return createHopscotchConditionalControlBlock('Check if else', 124, {'true': controlScript, 'false': controlFalseScript}, [condition]);
 }
