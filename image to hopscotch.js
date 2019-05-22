@@ -43,6 +43,18 @@ function rgbTohsv (r, g, b) {
     };
 }
 
+function download(filename, text) {
+  const element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 
 
 function rgbToHsbString(r,g,b) {
@@ -61,6 +73,7 @@ const movementMethod = document.querySelector('#movementMethod');
 const includeClones = document.querySelector('#includeClones');
 const cloneNumberP = document.querySelector('#cloneNumberP');
 const cloneNumberInput = document.querySelector('#cloneNumberInput');
+const hopscotchInput = document.querySelector('#hopscotchInput');
 //lower left corner position
 const offsetXInput = document.querySelector('#offsetXInput');
 const offsetYInput = document.querySelector('#offsetYInput');
@@ -247,6 +260,33 @@ includeClones.addEventListener('change',function() {
 });
 
 
+function doDownload(list, type) {
+	if (hopscotchInput.files.length > 0) {
+		const filename = hopscotchInput.files[0].name;
+		
+		const fir = new FileReader();
+		fir.onload = () => {
+const baseProject = JSON.parse(fir.result);
+		if (type == 0) {
+			const ability = makeAbility('pixel art', 'pix');
+			ability.blocks = list;
+			baseProject.abilities.push(ability);
+		} else {
+			for (let i = 0; i < list.length; i ++){
+				baseProject.abilities.push(list[i]);
+			}
+			
+		}
+		const project = JSON.stringify(baseProject);
+		download(filename, project);
+console.log('hi');
+	}
+console.log('hello');
+fir.readAsText(hopscotchInput.files[0]);
+}
+
+}
+
 createHopscotchButton.addEventListener('click', function() {
   
   if (imageInput.files.length > 0) { //If it has a file.
@@ -257,6 +297,7 @@ createHopscotchButton.addEventListener('click', function() {
          output.style.display = 'initial';
          //remove loading
          loading.parentNode.removeChild(loading);
+	doDownload(results, 0);
 	});
     } else {
 	const fr = new FileReader();
@@ -272,8 +313,10 @@ createHopscotchButton.addEventListener('click', function() {
 		const final = JSON.stringify(results).substring(1, JSON.stringify(results).length-1);
          output.value = final;
          output.style.display = 'initial';
+				
          //remove loading
          loading.parentNode.removeChild(loading);
+	doDownload(results, 1);
 	});
 		}
 	}
