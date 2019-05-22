@@ -286,6 +286,7 @@ createHopscotchButton.addEventListener('click', function() {
 		const final = JSON.stringify(results).substring(1, JSON.stringify(results).length-1);
          output.value = final;
          output.style.display = 'initial';
+				download("filename.hopscotch",final);
          //remove loading
          loading.parentNode.removeChild(loading);
 	});
