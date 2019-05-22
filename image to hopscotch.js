@@ -6,6 +6,7 @@ add option for custom abilities for each seperate color
 */
 
 //rgbtohsv thing
+//Wait where'd the link to where i found this code go?? Add that back
 function rgbTohsv (r, g, b) {
     let rabs, gabs, babs, rr, gg, bb, h, s, v, diff, diffc, percentRoundFn;
     rabs = r / 255;
@@ -43,6 +44,19 @@ function rgbTohsv (r, g, b) {
     };
 }
 
+//download function modifed from https://stackoverflow.com/questions/3665115/how-to-create-a-file-in-memory-for-user-to-download-but-not-through-server
+function download(filename, text) {
+  const element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
 
 
 function rgbToHsbString(r,g,b) {
